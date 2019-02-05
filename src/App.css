@@ -118,17 +118,18 @@ LAYOUT
 *****/
 
 .container{
-  height:100vh;
+  height:100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   background-image: url('https://picsum.photos/1000');
   color:white;
   background-size:cover;
   text-align:center;
+  overflow:scroll;
 }
 
 .container:after{ 
-  position: absolute;
+  position: fixed;
   background-color: red;
   height: 100%;
   top:0;
@@ -166,9 +167,14 @@ LAYOUT
 }
 
 #forecastContainer{
-  position:relative;
-  top:200px;
-  z-index:5;
+  position: relative;
+    margin: 100px auto;
+    z-index: 5;
+    width: 90%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  
+    white-space: nowrap;
 }
 
 .weeklyForecast{

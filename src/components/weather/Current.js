@@ -1,20 +1,21 @@
 import React from 'react';
 import Moment from 'react-moment';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import Counter from '../animate/Counter';
 import '../../App.css';
+import Forecast from './Forecast';
 
 
 
 const Current = (props) => {
 
-    console.log(props)
-    const {dt, id} = props.weatherInfo;
     
+    console.log(props)
+    const {dt} = props.weatherInfo;
     const toFarenheit = function(x){
         return (Math.round((x-273.15) * 9/5 + 32));
     }
-  
+    
         if (Object.keys(props.weatherInfo).length===0){
             return null;
         } else { 
@@ -40,14 +41,14 @@ const Current = (props) => {
                         <p> Humidity: 60%</p>
                     </section>
                     </div>
-                <Link className ='primaryButton forecastButton' to ={`forecast/${id}`}> Get Forecast</Link>
-
+               
+                   <Forecast forecast = {props.forecast}></Forecast>
+                    
             </React.Fragment>
 
         )
     
     }
-    
 }
 
 

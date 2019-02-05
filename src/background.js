@@ -15,7 +15,8 @@ class Background extends Component{
         this.state = {
             current: {},
             cityName:'',
-            cityId:''
+            cityId:'',
+            forecast:[]
             }
         this.citySearch = this.citySearch.bind(this);
         this.getCurrent = this.getCurrent.bind(this);
@@ -39,15 +40,27 @@ class Background extends Component{
             this.setState({
                 current: results
             })
-        })
-          .catch( err => {
-            err.text().then( errorMessage => {
-              window.alert('please try another city name');
-              this.setState({
-                  cityName: ''
+            return(
+                fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily?q=${this.state.cityName}&cnt=10&APPID=${OWKey}`)
+                .then(response => response.json())
+                .then(results => {
+                        console.log(results.list)
+                        this.setState ({
+                            forecast: results.list
+                        })
                 })
-            })
-          })
+                .catch(console.error)
+            )
+
+        })
+        //   .catch( err => {
+        //     err.text().then( errorMessage => {
+        //       window.alert('please try another city name');
+        //       this.setState({
+        //           cityName: ''
+        //         })
+        //     })
+        //   })
 
     }
 
@@ -71,8 +84,8 @@ class Background extends Component{
                 </div>
                 <Router>
                     <Switch>
-                        <Route exact path = {process.env.PUBLIC_URL + '/'} render = {(props) => <Current {...props} weatherInfo = {this.state.current} fetchInfo = {this.getCurrent}/> } />
-                        <Route exact path = {process.env.PUBLIC_URL + '/forecast/:id'} component = {Forecast} />
+                        <Route exact path = {process.env.PUBLIC_URL + '/'} render = {(props) => <Current {...props} weatherInfo = {this.state.current} fetchInfo = {this.getCurrent} forecast = {this.state.forecast}/> } />
+                        {/* <Route exact path = {process.env.PUBLIC_URL + '/forecast/:id'} component = {Forecast} /> */}
                     </Switch>
                 </Router>
                 {/* <Current weatherInfo = {this.state.current} fetchInfo = {this.getCurrent} /> */}
