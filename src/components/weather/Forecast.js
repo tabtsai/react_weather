@@ -48,7 +48,7 @@ class Forecast extends React.Component {
               
                 
                 </div>
-                  <Link className="primaryButton" to = "/"> Back to Search </Link>  
+                  <Link className="primaryButton" to = {process.env.PUBLIC_URL + '/'}> Back to Search </Link>  
             </React.Fragment> 
         )
     }
