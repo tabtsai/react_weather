@@ -30,7 +30,7 @@ class Background extends Component{
 
     getCurrent(event){
         event.preventDefault();
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.cityName}&APPID=${OWKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${this.state.cityName}&APPID=${OWKey}`)
         .then( response => {
             if (!response.ok) { throw response }
             return response.json()  //we only get here if there is no error

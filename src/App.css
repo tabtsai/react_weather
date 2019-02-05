@@ -80,8 +80,9 @@ input {
 }
 
 .primaryButton{
-  width: 200px;
-  padding: 15px 0;
+  position: relative;
+  min-width: 200px;
+  padding: 15px 30px;
   background: none;
   border-radius:5px;
   font-family: "Montserrat";
@@ -89,7 +90,10 @@ input {
   border: 1px solid white;
   letter-spacing:2px;
   text-transform:uppercase;
-  z-index: 5;
+  z-index: 7;
+  text-decoration:none;
+  background: rgba(255,255,255, 0);
+  transition: background 0.3s ease-in;
 }
 
 .primaryButton:hover{

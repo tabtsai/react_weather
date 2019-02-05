@@ -14,7 +14,7 @@ class Forecast extends React.Component {
     }
 
     componentDidMount(){
-            fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?id=${this.props.match.params.id}&cnt=10&APPID=${OWKey}`)
+            fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily?id=${this.props.match.params.id}&cnt=10&APPID=${OWKey}`)
             .then(response => response.json())
             .then(results => {
                     console.log(results.list)
@@ -30,6 +30,7 @@ class Forecast extends React.Component {
             return (Math.round((x-273.15) * 9/5 + 32));
         }
         return(
+            <React.Fragment>
             <div id = 'forecastContainer'>
                  {this.state.forecast.map(function(item){
                     return (
@@ -44,9 +45,11 @@ class Forecast extends React.Component {
                     )
                 }) }
                 
-                <Link to = "/"> Back to Search </Link>   
+              
                 
                 </div>
+                  <Link className="primaryButton" to = "/"> Back to Search </Link>  
+            </React.Fragment> 
         )
     }
 }
