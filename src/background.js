@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Current from './components/weather/Current';
 import './App.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Forecast from './components/weather/Forecast';
 
 // import Moment from 'react-moment';
 
@@ -67,9 +69,14 @@ class Background extends Component{
                         <button className ='primaryButton' type = "submit">Get Weather</button>
                     </form>
                 </div>
-          
-                    <Current weatherInfo = {this.state.current} fetchInfo = {this.getCurrent} />
-               
+                <Router>
+                    <Switch>
+                        <Route exact path ='/' render = {(props) => <Current {...props} weatherInfo = {this.state.current} fetchInfo = {this.getCurrent}/> } />
+                        <Route exact path = '/forecast/:id' component = {Forecast} />
+                    </Switch>
+                </Router>
+                {/* <Current weatherInfo = {this.state.current} fetchInfo = {this.getCurrent} /> */}
+                
             </div>
             
         )

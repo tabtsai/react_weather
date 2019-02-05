@@ -161,11 +161,22 @@ LAYOUT
 
 }
 
+#forecastContainer{
+  position:relative;
+  top:200px;
+  z-index:5;
+}
+
 .weeklyForecast{
+  position:relative;
   display:inline-block;
-  border-right: solid black .5px;
+  border-right: solid white .5px;
   padding: 0 30px;
-  text-align: center;
+  text-align: center;  
+}
+
+.weeklyForecast:last-child{
+  border-right: none;
 }
 
 .time{
@@ -195,6 +206,7 @@ LAYOUT
 .conditions>p{
   margin: 5px;
 }
+
 
 
 /****
