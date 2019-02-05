@@ -24,7 +24,7 @@ const Current = (props) => {
             <React.Fragment>
                 <section className = "time animateFade">
                         <Moment className ="timeMonth" format="MMMM" >{dt*1000}</Moment>
-                        <Moment className ="timeDay"format="DD">{dt*1000}</Moment>
+                        <Moment className ="timeDay"format="D">{dt*1000}</Moment>
                         <Moment className ="timeHour" format="h:mm A">{dt*1000}</Moment>
                 </section>
                     <div className = "currentCard animateFade">
@@ -33,12 +33,12 @@ const Current = (props) => {
                         <Counter nowTemp = {toFarenheit(props.weatherInfo.main.temp)} />
                     </div>
                     <section className = 'hilo'>
-                        <p className ="dailyHigh">High: { toFarenheit(props.weatherInfo.main.temp_max)} / Low: { toFarenheit(props.weatherInfo.main.temp_min)} </p>
+                        <p className ="dailyHigh">High: { toFarenheit(props.weatherInfo.main.temp_max)}<span>&deg;</span> / Low: { toFarenheit(props.weatherInfo.main.temp_min)}<span>&deg;</span></p>
                    
                     </section>
                     <section className = "conditions">
-                        <p> Precipitation: 50%</p>
-                        <p> Humidity: 60%</p>
+                        <p> Humidity: {props.weatherInfo.main.humidity}<span>&#37;</span></p>
+                        <p> Wind: {props.weatherInfo.wind.speed} m/s</p>
                     </section>
                     </div>
                

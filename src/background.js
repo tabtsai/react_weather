@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import Current from './components/weather/Current';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Forecast from './components/weather/Forecast';
-
+// import Forecast from './components/weather/Forecast';
 // import Moment from 'react-moment';
 
 
@@ -53,14 +52,14 @@ class Background extends Component{
             )
 
         })
-        //   .catch( err => {
-        //     err.text().then( errorMessage => {
-        //       window.alert('please try another city name');
-        //       this.setState({
-        //           cityName: ''
-        //         })
-        //     })
-        //   })
+          .catch( err => {
+            err.text().then( errorMessage => {
+              window.alert('please try another city name');
+              this.setState({
+                  cityName: ''
+                })
+            })
+          })
 
     }
 

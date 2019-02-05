@@ -34,14 +34,12 @@ class Counter extends React.Component {
         if(this.props.nowTemp !== nextProps.nowTemp){
                const count = document.querySelector('#currentTemp');
                const updateCounter = (v) => count.innerHTML = Math.round(v);
-               tween({to: this.props.nowTemp, duration: 4000 }).start(updateCounter);
+               tween({to: nextProps.nowTemp, duration: 4000 }).start(updateCounter);
 
                const tempBlock = document.querySelector('.theTemp');
                tempBlock.classList.remove('tempAnimate');
                tempBlock.classList.add('tempAnimate');
-           
-           
-        
+
         }
 
      
