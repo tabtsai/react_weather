@@ -71,7 +71,7 @@ class Background extends Component{
                 </div>
                 <Router>
                     <Switch>
-                        <Route exact path = {process.env.PUBLIC_URL + '/'}> render = {(props) => <Current {...props} weatherInfo = {this.state.current} fetchInfo = {this.getCurrent}/> } />
+                        <Route exact path = {process.env.PUBLIC_URL + '/'} render = {(props) => <Current {...props} weatherInfo = {this.state.current} fetchInfo = {this.getCurrent}/> } />
                         <Route exact path = {process.env.PUBLIC_URL + '/forecast/:id'} component = {Forecast} />
                     </Switch>
                 </Router>
