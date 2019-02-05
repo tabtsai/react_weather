@@ -1,32 +1,251 @@
-.App {
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900');
+
+*{
+  box-sizing:border-box;
+  font-family: 'Montserrat';
+}
+:root {
+  --temp-color:hsla(225,0%,0%,.5);
+}
+ 
+body{
+  font-family: 'Montserrat';
+}
+
+h1#currentTemp{
+  font-size: 15rem;
+  display:inline-block;
+}
+
+input {
+  width: 300px;
+  padding: 12px 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background: rgba(255,255,255,.5);
+  border: none;
+  text-transform:capitalize;
+  font-size:1.1em;
+
+  
+}
+
+.primaryButton{
+  width: 200px;
+  padding: 15px 0;
+  background: none;
+  border-radius:5px;
+  font-family: "Montserrat";
+  color: white;
+  border: 1px solid white;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  z-index: 5;
+}
+
+.primaryButton:hover{
+  background: rgba(255,255,255, 0.3);
+  cursor:pointer;
+}
+
+.forecastButton{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 50px;
+  text-decoration:none;
+  font-size: .8em;
+
+}
+
+/****
+
+LAYOUT
+
+*****/
+
+.container{
+  height:100vh;
+  width: 100%;
+  position: absolute;
+  background-image: url('https://picsum.photos/1000');
+  color:white;
+  background-size:cover;
+  text-align:center;
+}
+
+.container:after{ 
+  position: absolute;
+  background-color: red;
+  height: 100%;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  content:'';
+  animation: adjustHSLA 4s;
+  animation-fill-mode: forwards;
+  z-index:1;
+}
+
+.currentCard{
+  position:relative;
+  margin: 50px auto;
+  text-align:center;
+  width: 500px;
+  z-index:3;
+  background-image: linear-gradient(62deg, rgba(142,197,252,.2) 0%, rgba(224,195,252,.2) 100%);
+  padding: 50px;
+  transition: opacity .5s ease-in 0.1s;
+  z-index:5;
+  opacity:0;
+  overflow:hidden;
+}
+
+
+.searchBox{
+  position:relative;
+  z-index:10;
+  margin: 50px auto;
+  top:40%;
+  transition: top 0.3s ease-in;
+
+}
+
+.weeklyForecast{
+  display:inline-block;
+  border-right: solid black .5px;
+  padding: 0 30px;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.time{
+  position: relative;
+  margin: 50px auto;
+  text-align: center;
+  z-index:10;
+  opacity:0;
+  transition: opacity .5s ease-in 1s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.timeHour{
+  display: block;
 }
 
-.App-link {
-  color: #61dafb;
+.timeMonth, .timeDay {
+  display:inline-block;
+  margin-right: .5em;
+  margin-bottom:10px;
+  font-size: 1.2em
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.conditions{
+  margin-top: 20px;
+}
+
+.conditions>p{
+  margin: 5px;
+}
+
+
+/****
+
+ANIMATE
+
+*****/
+
+.tempAnimate{
+  top: 0px !important;
+  opacity: .8 !important;
+}
+
+.theTemp{
+  top:-200px;
+  position:relative;
+  transition: all 0.4s ease-in .3s;
+  opacity: 0;
+  overflow:hidden;
+}
+
+.theTemp>span {
+  position:relative;
+  bottom: 150px;
+  font-size: 2rem;
+}
+
+#content{
+  opacity:0;
+  transition: opacity .5s ease-in .5s;
+}
+
+.fadeIn{
+  opacity:1 !important;
+}
+
+.moveUp{
+  top:0;
+
+}
+
+@keyframes adjustHSLA {
+  0% { 
+    background: hsla(220, 85% , 50%, 0.1);
   }
-  to {
-    transform: rotate(360deg);
+  
+  50% {
+     background: hsla(220, 85% , 50%, 0.7);
+  }
+  
+  100% {
+    background: var(--temp-color);
   }
 }
